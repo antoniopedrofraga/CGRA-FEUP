@@ -268,7 +268,8 @@ LightingScene.prototype.display = function() {
 
 	// Clock
 	this.pushMatrix();
-	this.materialB.apply();
+	this.scale(1,1,0.2);
+	this.translate(7.25,7.25,0);
 	this.clock.display();
 	this.popMatrix();
 

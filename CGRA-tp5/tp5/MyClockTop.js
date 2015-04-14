@@ -30,7 +30,7 @@
  	this.vertices.push(0);
  	this.vertices.push(0);
 
- 	for(var i = 0; i < 12; i++){
+ 	for(var i = 0; i < 13; i++){
         this.vertices.push(0.5*Math.cos(indice));
         this.vertices.push(0.5*Math.sin(indice));
         this.vertices.push(0);
@@ -38,9 +38,9 @@
  	}
 
  	indice = 1;
-    for(var i = 0; i < 12; i++){
+    for(var i = 0; i < 13; i++){
         this.indices.push(0);
-        if(i == 11){
+        if(i == 12){
           this.indices.push(indice);
           this.indices.push(1);
         }else{
