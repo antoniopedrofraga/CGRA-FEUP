@@ -23,6 +23,8 @@
  	/*this.normals = [
  	];*/
     
+    /*this.texCoords = [ ];*/
+
     var indice = 0;
  	var angulo = Math.PI * 2 / 12;
     
@@ -34,8 +36,9 @@
         this.vertices.push(0.5*Math.cos(indice));
         this.vertices.push(0.5*Math.sin(indice));
         this.vertices.push(0);
-        indice = angulo * i;
+        indice = angulo * (i + 1);
  	}
+
 
  	indice = 1;
     for(var i = 0; i < 13; i++){
@@ -49,6 +52,7 @@
           indice = indice + 1;
         }
  	}
+    
 
  	this.primitiveType = this.scene.gl.TRIANGLES;
  	this.initGLBuffers();

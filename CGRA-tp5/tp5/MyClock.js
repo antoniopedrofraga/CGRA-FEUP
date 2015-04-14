@@ -29,7 +29,7 @@
     this.scene.popMatrix();
 	
 	this.scene.pushMatrix();
-	this.clockAppearance.apply();
+	//this.clockAppearance.apply();
 	this.scene.translate(0,0,1);
     this.top.display();
     this.scene.popMatrix();
