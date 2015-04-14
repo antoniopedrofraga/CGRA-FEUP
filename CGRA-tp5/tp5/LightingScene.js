@@ -272,9 +272,7 @@ LightingScene.prototype.display = function() {
 	this.translate(7.25,7.25,0);
 	this.clock.display();
 	this.popMatrix();
-
-
-
+	
 	// ---- END Primitive drawing section
 
 	this.shader.unbind();
