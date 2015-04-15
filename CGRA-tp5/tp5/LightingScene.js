@@ -96,7 +96,7 @@ LightingScene.prototype.init = function(application) {
 	this.metalAppearance.setShininess(2);
 	this.metalAppearance.loadTexture("/resources/images/metal.png");
 
-
+	this.setUpdatePeriod(100);
 	
 };
 
@@ -268,6 +268,7 @@ LightingScene.prototype.display = function() {
 
 	// Clock
 	this.pushMatrix();
+	this.metalAppearance.apply();
 	this.scale(1,1,0.2);
 	this.translate(7.25,7.25,0);
 	this.clock.display();
@@ -278,4 +279,8 @@ LightingScene.prototype.display = function() {
 	// ---- END Primitive drawing section
 
 	this.shader.unbind();
+};
+
+LightingScene.prototype.update = function(currTime) {
+ 	this.clock.update(currTime);
 };
