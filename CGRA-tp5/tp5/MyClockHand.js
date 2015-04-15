@@ -7,6 +7,8 @@
     this.height = height;
     this.angle = myAngle;
     this.type = type;
+    this.lastCurrTime = 0;
+    this.delta_ms = 0;
 
  	this.initBuffers();
  };
@@ -42,13 +44,16 @@
 
 
  MyClockHand.prototype.update = function(currTime) {
+    this.delta_ms = currTime - this.lastCurrTime;
+    this.lastCurrTime = currTime;
+    console.log('Delta: %d', this.delta_ms);
  	if(this.type == 'seconds'){
-      this.setAngle((this.angle + 360 / (60 * 100)));
+      this.setAngle(this.angle + (360 / 60 / (this.delta_ms / 10)));
       console.log('Type: %s Angle: %d after print',this.type, this.angle);
  	}else if(this.type == 'minutes'){
-      this.setAngle(this.angle + 360 / (60 * 60 * 100));
+      this.setAngle(this.angle + 360 / (60 * 60) / (this.delta_ms / 10));
  	}else if(this.type == 'hours'){
-      this.setAngle(this.angle + 360 / (60 * 60 * 60 * 100));
+      this.setAngle(this.angle + 360 / (60 * 60 * 60) / (this.delta_ms / 10));
  	}
  	console.log('Type: %s Angle: %d',this.type, this.angle);
  };
