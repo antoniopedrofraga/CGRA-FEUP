@@ -41,6 +41,7 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
+	this.plane = new MyPlaneDisplay(this);
 
 
 
@@ -272,6 +273,12 @@ LightingScene.prototype.display = function() {
 	this.scale(1,1,0.2);
 	this.translate(7.25,7.25,0);
 	this.clock.display();
+	this.popMatrix();
+
+	// Plane
+	this.pushMatrix();
+	this.materialB.apply();
+	this.plane.display();
 	this.popMatrix();
 
 

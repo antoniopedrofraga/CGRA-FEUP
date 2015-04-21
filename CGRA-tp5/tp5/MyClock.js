@@ -79,5 +79,4 @@ MyClock.prototype.update = function(currTime) {
  	this.seconds.update(currTime);
  	this.hours.update(currTime);
  	this.minutes.update(currTime);
- 	console.log('seconds : %d , hours : %d , minutes : %d\n',this.seconds.angle,this.minutes.angle, this.hours.angle);
 };
