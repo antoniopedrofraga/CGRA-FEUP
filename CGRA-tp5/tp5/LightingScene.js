@@ -277,7 +277,7 @@ LightingScene.prototype.display = function() {
 
 	// Plane
 	this.pushMatrix();
-	this.materialB.apply();
+	this.metalAppearance.apply();
 	this.plane.display();
 	this.popMatrix();
 
@@ -290,4 +290,5 @@ LightingScene.prototype.display = function() {
 
 LightingScene.prototype.update = function(currTime) {
  	this.clock.update(currTime);
+ 	this.plane.update(currTime);
 };

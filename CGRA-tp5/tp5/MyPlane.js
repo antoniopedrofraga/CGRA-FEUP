@@ -2,10 +2,12 @@
  * MyClockTop
  * @constructor
  */
- function MyPlane(scene) {
+ function MyPlane(scene,x,y,z) {
  	CGFobject.call(this,scene);
-
  	this.initBuffers();
+ 	this.x = x;
+ 	this.y = y;
+ 	this.z = z;
  };
 
  MyPlane.prototype = Object.create(CGFobject.prototype);
