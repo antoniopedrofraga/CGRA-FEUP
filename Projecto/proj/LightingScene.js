@@ -30,6 +30,12 @@ LightingScene.prototype.init = function(application) {
 
 	this.axis = new CGFaxis(this);
 
+	// Adicionados antes de comecar o projeto
+	this.option1 = true;
+	this.option2 = false;
+	this.speed = 3;
+
+
 	// Scene elements
 	this.table = new MyTable(this);
 	this.wall = new Plane(this);
@@ -38,6 +44,7 @@ LightingScene.prototype.init = function(application) {
 	this.prism = new MyPrism(this,8,20);
 	this.cylinder = new MyCylinder(this,8,20);
 	this.clock = new MyClock(this);
+	this.robot = new MyRobot(this);
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
@@ -274,6 +281,15 @@ LightingScene.prototype.display = function() {
 	this.clock.display();
 	this.popMatrix();
 
+	// Robot
+	this.pushMatrix();
+	this.metalAppearance.apply();
+	this.rotate(9 * Math.PI / 8,0,1,0);
+	this.translate(0,0,-4);
+	this.translate(-5,4,-7);
+	this.robot.display();
+	this.popMatrix();
+
 
 
 
@@ -284,4 +300,8 @@ LightingScene.prototype.display = function() {
 
 LightingScene.prototype.update = function(currTime) {
  	this.clock.update(currTime);
+};
+
+LightingScene.prototype.doSomething = function() {
+	console.log("Doing Something...");
 };
