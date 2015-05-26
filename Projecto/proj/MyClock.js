@@ -8,6 +8,8 @@
  function MyClock(scene) {
  	CGFobject.call(this,scene);
 
+ 	this.pause = false;
+
 	this.cylinder = new MyCylinder(this.scene,12,1);
 	this.cylinder.initBuffers();
 
@@ -76,7 +78,9 @@
  };
 
 MyClock.prototype.update = function(currTime) {
+	if(this.pause == false){
  	this.seconds.update(currTime);
  	this.hours.update(currTime);
  	this.minutes.update(currTime);
+	}
 };

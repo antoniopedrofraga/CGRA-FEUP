@@ -31,8 +31,11 @@ LightingScene.prototype.init = function(application) {
 	this.axis = new CGFaxis(this);
 
 	// Adicionados antes de comecar o projeto
-	this.option1 = true;
-	this.option2 = false;
+	this.luz1 = true;
+	this.luz2 = true;
+	this.luz3 = true;
+	this.luz4 = true;
+	this.pausa = false;
 	this.speed = 3;
 
 
@@ -44,7 +47,7 @@ LightingScene.prototype.init = function(application) {
 	this.prism = new MyPrism(this,8,20);
 	this.cylinder = new MyCylinder(this,8,20);
 	this.clock = new MyClock(this);
-	this.robot = new MyRobot(this);
+	this.robot = new MyRobot(this, 8 , 5, 8, - 4 * Math.PI / 5);
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
@@ -146,6 +149,7 @@ LightingScene.prototype.initLights = function() {
 	this.lights[3].setConstantAttenuation(0);
 	this.lights[3].setQuadraticAttenuation(0.2);
 	this.lights[3].enable();
+	
 
 	for(var i = 0; i < 4; i++){
 		this.lights[i].setVisible(true);
@@ -284,14 +288,40 @@ LightingScene.prototype.display = function() {
 	// Robot
 	this.pushMatrix();
 	this.metalAppearance.apply();
-	this.rotate(9 * Math.PI / 8,0,1,0);
-	this.translate(0,0,-4);
-	this.translate(-5,4,-7);
+	this.robot.setUp();
 	this.robot.display();
 	this.popMatrix();
 
+	//Definicoes
+	if(this.luz1 == false){
+		this.lights[0].disable();
+	}else{
+		this.lights[0].enable();
+	}
 
+	if(this.luz2 == false){
+		this.lights[1].disable();
+	}else{
+		this.lights[1].enable();
+	}
 
+	if(this.luz3 == false){
+		this.lights[2].disable();
+	}else{
+		this.lights[2].enable();
+	}
+
+	if(this.luz4 == false){
+		this.lights[3].disable();
+	}else{
+		this.lights[3].enable();
+	}
+	
+	if(this.pausa == false){
+		this.clock.pause = false;
+	}else{
+		this.clock.pause = true;
+	}
 
 	// ---- END Primitive drawing section
 
@@ -300,8 +330,9 @@ LightingScene.prototype.display = function() {
 
 LightingScene.prototype.update = function(currTime) {
  	this.clock.update(currTime);
+ 	this.robot.update(currTime);
 };
 
-LightingScene.prototype.doSomething = function() {
+LightingScene.prototype.Settings = function() {
 	console.log("Doing Something...");
 };

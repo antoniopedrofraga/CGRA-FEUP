@@ -30,18 +30,26 @@ MyInterface.prototype.init = function(application) {
 	// the identifier 'doSomething' must be a function declared as part of that object (i.e. a member of the scene class)
 	// e.g. LightingScene.prototype.doSomething = function () { console.log("Doing something..."); }; 
 
-	this.gui.add(this.scene, 'doSomething');	
+	this.gui.add(this.scene, 'Settings');	
 
 	// add a group of controls (and open/expand by defult)
 	
-	var group=this.gui.addFolder("Options");
+	var group=this.gui.addFolder("Luzes");
 	group.open();
 
 	// add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
 	// e.g. this.option1=true; this.option2=false;
 	
-	group.add(this.scene, 'option1');
-	group.add(this.scene, 'option2');
+	group.add(this.scene, 'luz1');
+	group.add(this.scene, 'luz2');
+	group.add(this.scene, 'luz3');
+	group.add(this.scene, 'luz4');
+
+	//Adicionar um grupo
+	var group2=this.gui.addFolder("Relogio");
+	group2.open();
+
+	group2.add(this.scene, 'pausa');
 	
 	// add a slider
 	// must be a numeric variable of the scene, initialized in scene.init e.g.
@@ -68,6 +76,19 @@ MyInterface.prototype.processKeyboard = function(event) {
 	switch (event.keyCode)
 	{
 		case (65):	// only works for capital 'A', as it is
-			console.log("Key 'A' pressed");
+			this.scene.robot.updateRotation(Math.PI / 18, this.scene.speed);
+			break;
+		case (68):  // this 
+			this.scene.robot.updateRotation(- Math.PI / 18, this.scene.speed);
+			break;
+		case (87) : //W
+			this.scene.robot.updateTranslate(0, this.scene.speed);
+			break;
+		case (83) : //S
+			this.scene.robot.updateTranslate(1, this.scene.speed);
+			break;
+		default:
+			console.log("Any other key");
+			break;
 	};
 };
