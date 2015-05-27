@@ -67,7 +67,7 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
-	this.roda = new MyRobotWheel(this,500,1,0.4);
+	this.arranged_wall = new MyWall(this);
 
 
 	// Materials
@@ -321,13 +321,13 @@ LightingScene.prototype.display = function() {
 	this.robot.setUp();
 	this.robot.display();
 	this.popMatrix();
-	
-	//Teste Roda
 
+	// Wall
 	this.pushMatrix();
-    this.metalAppearance3.apply();
-    this.roda.display();
-    this.popMatrix();
+	this.arranged_wall.display();
+	this.popMatrix();
+	
+
 
 	//Definicoes
 	if(this.luz1 == false){

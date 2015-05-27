@@ -169,7 +169,7 @@ MyRobot.prototype.display = function() {
 			this.angulo_adeus = 0;
 		}
 	}else if(this.scene.hello == 4){
-		if(this.angulo_hello < this.angulo_oscilar_direito){
+		if(this.angulo_hello < -this.angulo_oscilar_direito){
 			this.angulo_hello += Math.PI / 90;
 		}else{
 			this.angulo_hello = 0;

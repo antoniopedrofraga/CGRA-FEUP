@@ -21,6 +21,7 @@ serialInclude([
 	'MyRobotArm.js',
 	'RightArm.js',
 	'LeftArm.js',
+	'MyWall.js',
 
 	
 	main=function() {
