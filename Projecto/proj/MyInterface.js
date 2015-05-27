@@ -58,6 +58,8 @@ MyInterface.prototype.init = function(application) {
 	
 	this.gui.add(this.scene, 'speed', -5, 5);
 
+	this.gui.add(this.scene, 'currRobotAppearance', this.scene.robotAppearanceList);
+
 	return true;
 };
 
@@ -86,9 +88,6 @@ MyInterface.prototype.processKeyboard = function(event) {
 			break;
 		case (83) : //S
 			this.scene.robot.updateTranslate(1, this.scene.speed);
-			break;
-		default:
-			console.log("Any other key");
 			break;
 	};
 };

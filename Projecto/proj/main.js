@@ -18,6 +18,9 @@ serialInclude([
 	'MyInterface.js',
 	'MyRobot.js',
 	'MyRobotWheel.js',
+	'MyRobotArm.js',
+	'RightArm.js',
+	'LeftArm.js',
 
 	
 	main=function() {

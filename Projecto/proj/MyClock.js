@@ -25,6 +25,8 @@
 	this.top = new MyClockTop(this.scene);
 	this.top.initBuffers();
 
+	
+
 	this.clockAppearance = new CGFappearance(this.scene);
 	this.clockAppearance.setAmbient(0.3,0.3,0.3,1);
 	this.clockAppearance.setDiffuse(0.9,0.9,0.9,1);

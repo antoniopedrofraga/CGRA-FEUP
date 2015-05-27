@@ -37,6 +37,21 @@ LightingScene.prototype.init = function(application) {
 	this.luz4 = true;
 	this.pausa = false;
 	this.speed = 3;
+	this.robotAppearances = [];
+	this.robotAppearances.push("/resources/images/metal.png");
+	this.robotAppearances.push("/resources/images/robothead.png");
+	this.robotAppearances.push("/resources/images/robotbody.png");
+	this.robotAppearances.push("/resources/images/metalAppearance2.png");
+	this.robotAppearances.push("/resources/images/robothead2.png");
+	this.robotAppearances.push("/resources/images/robotbody2.png");
+	this.robotAppearances.push("/resources/images/metalAppearance3.png");
+	this.robotAppearances.push("/resources/images/robothead3.png");
+	this.robotAppearances.push("/resources/images/robotbody3.png");
+
+	this.currRobotAppearance = 'Bender';
+	this.robotAppearanceList = [
+	'Bender', 'RoboCan', 'Militar'
+	];
 
 
 	// Scene elements
@@ -51,7 +66,6 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
-
 
 
 	// Materials
@@ -104,7 +118,21 @@ LightingScene.prototype.init = function(application) {
 	this.metalAppearance.setDiffuse(10,10,10,1);
 	this.metalAppearance.setSpecular(0.1,0.1,0.1,1);
 	this.metalAppearance.setShininess(2);
-	this.metalAppearance.loadTexture("/resources/images/metal.png");
+	this.metalAppearance.loadTexture(this.robotAppearances[0]);
+
+	this.metalAppearance2 = new CGFappearance(this);
+	this.metalAppearance2.setAmbient(0.3,0.3,0.3,1);
+	this.metalAppearance2.setDiffuse(0.9,0.9,0.9,1);
+	this.metalAppearance2.setSpecular(0.1,0.1,0.1,1);
+	this.metalAppearance2.setShininess(2);
+	this.metalAppearance2.loadTexture(this.robotAppearances[3]);
+
+	this.metalAppearance3 = new CGFappearance(this);
+	this.metalAppearance3.setAmbient(0.3,0.3,0.3,1);
+	this.metalAppearance3.setDiffuse(0.9,0.9,0.9,1);
+	this.metalAppearance3.setSpecular(0.1,0.1,0.1,1);
+	this.metalAppearance3.setShininess(2);
+	this.metalAppearance3.loadTexture(this.robotAppearances[6]);
 
 	this.setUpdatePeriod(100);
 	
@@ -291,6 +319,7 @@ LightingScene.prototype.display = function() {
 	this.robot.setUp();
 	this.robot.display();
 	this.popMatrix();
+
 
 	//Definicoes
 	if(this.luz1 == false){

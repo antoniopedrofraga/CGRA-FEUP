@@ -26,12 +26,12 @@
 	for (var q = 0; q <= 1;) {
 		//---------------slices------------------
 		for (var i = 0; i < this.slices; i++) {
-			this.vertices.push(Math.sqrt(1-(q*q))*0.5*Math.cos(i*(2*Math.PI)/this.slices));
-			this.vertices.push(Math.sqrt(1-(q*q))*0.5*Math.sin(i*(2*Math.PI)/this.slices));
+			this.vertices.push(Math.sqrt(1-(q*q))*Math.cos(i*(2*Math.PI)/this.slices));
+			this.vertices.push(Math.sqrt(1-(q*q))*Math.sin(i*(2*Math.PI)/this.slices));
 			this.vertices.push(q);
 
-			this.normals.push(Math.sqrt(1-(q*q))*0.5*Math.cos(i*(2*Math.PI)/this.slices));
-			this.normals.push(Math.sqrt(1-(q*q))*0.5*Math.sin(i*(2*Math.PI)/this.slices));
+			this.normals.push(Math.sqrt(1-(q*q))*Math.cos(i*(2*Math.PI)/this.slices));
+			this.normals.push(Math.sqrt(1-(q*q))*Math.sin(i*(2*Math.PI)/this.slices));
 			this.normals.push(q);
 		}
 

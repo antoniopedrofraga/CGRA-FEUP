@@ -1,8 +1,5 @@
-/**
- * MyCylinder
- * @constructor
- */
- function MyCylinder(scene, slices, stacks) {
+
+ function MyRobotArm(scene, slices, stacks) {
  	CGFobject.call(this,scene);
 	
 	this.slices=slices;
@@ -13,10 +10,10 @@
  	this.initBuffers();
  };
 
- MyCylinder.prototype = Object.create(CGFobject.prototype);
- MyCylinder.prototype.constructor = MyPrism;
+ MyRobotArm.prototype = Object.create(CGFobject.prototype);
+ MyRobotArm.prototype.constructor = MyPrism;
 
- MyCylinder.prototype.initBuffers = function() {
+ MyRobotArm.prototype.initBuffers = function() {
  
 
     this.vertices = [
@@ -34,12 +31,12 @@
  	var angulo = (2*Math.PI) / this.slices;
 	for (var q = 0; q <= this.stacks; q++) {
 		for (var i = 0; i < this.slices; i++) {
-		this.vertices.push(0.5 * Math.cos(i*angulo));
-		this.vertices.push(0.5 * Math.sin(i*angulo));
+		this.vertices.push(0.1 * Math.cos(i*angulo));
+		this.vertices.push(0.1 * Math.sin(i*angulo));
 		this.vertices.push(q);
 
-		this.normals.push(0.5 * Math.cos(i*angulo));
-		this.normals.push(0.5 * Math.sin(i*angulo));
+		this.normals.push(0.1 * Math.cos(i*angulo));
+		this.normals.push(0.1 * Math.sin(i*angulo));
 		this.normals.push(0);
 		}
 	}
