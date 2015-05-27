@@ -20,8 +20,8 @@
  	this.indices = [
  	];
 
- 	/*this.normals = [
- 	];*/
+ 	this.normals = [
+ 	];
     
    this.texCoords = [ ];
 
@@ -31,12 +31,18 @@
  	this.vertices.push(0);
  	this.vertices.push(0);
  	this.vertices.push(0);
+ 	this.normals.push(0);
+    this.normals.push(0);
+    this.normals.push(1);
     this.texCoords.push(0.5,0.5);
  	for(var i = 0; i < 12; i++){
  	    this.texCoords.push(0.5*Math.cos(indice) + 0.5,0.5 - (0.5*Math.sin(indice)));
         this.vertices.push(0.5*Math.cos(indice));
         this.vertices.push(0.5*Math.sin(indice));
         this.vertices.push(0);
+        this.normals.push(0);
+        this.normals.push(0);
+        this.normals.push(1);
         indice = angulo * (i + 1);
  	}
 

@@ -6,8 +6,26 @@
  	this.y = y;
  	this.z = z;
  	this.angulo = angulo;
+	
+	this.speed = Math.PI / 10;
+ 	this.angulo_roda_esquerda = 0;
+ 	this.angulo_roda_direita = 0;
+
+ 	this.angulo_oscilar_esquerdo = 0;
+ 	this.angulo_oscilar_direito = 0;
+
+ 	this.angulo_hello = 0;
+ 	this.angulo_oscilar = 0;
+ 	this.angulo_adeus = 0;
+ 	this.direcao_adeus = 1;
+
+ 	this.direcao = 1;
 
  	this.temp_angulo;
+
+ 	this.i = 0;
+
+ 	
 
  	//Partes do robot
  	this.corpo = new MyCylinder(this.scene,500,2);
@@ -108,12 +126,59 @@ MyRobot.prototype.display = function() {
     this.scene.popMatrix();
 
     this.scene.pushMatrix();
-    this.scene.translate(1.1,1.3,0);
+    this.scene.translate(0.6,2.2,0);
+    this.scene.rotate(Math.PI,0,0,1);
+    this.scene.rotate(this.angulo_oscilar_esquerdo, 0,1,0);
 	this.braco_esquerdo.display();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
 	this.scene.translate(-0.6,2.2,0);
+
+	if(this.scene.hello > 0){
+		this.scene.rotate(this.angulo_hello, 1,0,0);
+		this.scene.rotate(this.angulo_adeus, 0,0,1);
+	}else{
+		this.scene.rotate(this.angulo_oscilar_direito, 0,1,0);
+	}
+
+	if(this.scene.hello == 0){
+	}else if( this.scene.hello == 1){
+		if(this.angulo_hello > -Math.PI){
+			this.angulo_hello -= Math.PI / 100;
+		}else{
+			this.scene.hello = 2;
+		}
+	}else if(this.scene.hello == 2){
+		if(this.i < 3){
+			if((this.angulo_adeus < Math.PI / 5) && (-Math.PI / 4 < this.angulo_adeus)){
+				this.angulo_adeus += this.direcao_adeus * Math.PI / 100;
+			}else{
+				this.i++;
+				this.direcao_adeus = this.direcao_adeus  * -1;
+				this.angulo_adeus += this.direcao_adeus * Math.PI / 100;
+			}
+		}else{
+			this.scene.hello = 3;
+		}
+	}else if(this.scene.hello == 3){
+		if(this.angulo_adeus > 0){
+			this.angulo_adeus += this.direcao_adeus * Math.PI / 100;
+		}else{
+			this.scene.hello = 4;
+			this.angulo_adeus = 0;
+		}
+	}else if(this.scene.hello == 4){
+		if(this.angulo_hello < this.angulo_oscilar_direito){
+			this.angulo_hello += Math.PI / 90;
+		}else{
+			this.angulo_hello = 0;
+			this.i = 0;
+			this.scene.hello = 0;
+			this.direcao_adeus = 1;
+		}
+	}
+
 	this.braco.display();
 	this.scene.popMatrix();
 
@@ -135,6 +200,7 @@ MyRobot.prototype.display = function() {
     this.tireAppearance.apply();
     this.scene.rotate(Math.PI/2, 0 ,1 ,0);
     this.scene.translate(0,0.5,0.5);
+    this.scene.rotate(this.angulo_roda_esquerda, 0 ,0 ,1);
     this.roda.display();
     this.scene.popMatrix();
 
@@ -142,6 +208,7 @@ MyRobot.prototype.display = function() {
     this.tireAppearance.apply();
     this.scene.rotate(Math.PI/2, 0 ,1 ,0);
     this.scene.translate(0,0.5,-0.9);
+    this.scene.rotate(this.angulo_roda_direita, 0 ,0 ,1);
     this.roda.display();
     this.scene.popMatrix();
 
@@ -159,55 +226,85 @@ MyRobot.prototype.display = function() {
     this.topo.display();
     this.scene.popMatrix();
     
-    //Tampo esquerdo fora
+    //Tampo direito fora
 
     this.scene.pushMatrix();
     this.wheelAppearance.apply();
     this.scene.rotate(- Math.PI / 2, 0, 1 ,0);
     this.scene.translate(0, 0.5, 0.9);
+    this.scene.rotate(-this.angulo_roda_esquerda, 0 ,0 ,1);
     this.topo.display();
     this.scene.popMatrix();
   
-    //Tampo esquerdo dentro
+    //Tampo direito dentro
     this.scene.pushMatrix();
     this.wheelAppearance.apply();
     this.scene.rotate(Math.PI / 2, 0, 1 ,0);
     this.scene.translate(0, 0.5, -0.5);
+    this.scene.rotate(this.angulo_roda_esquerda, 0 ,0 ,1);
     this.topo.display();
     this.scene.popMatrix();
     
-    //Tampo direito fora
+    //Tampo esquerda fora
     this.scene.pushMatrix();
     this.wheelAppearance.apply();
     this.scene.rotate(Math.PI / 2, 0, 1 ,0);
     this.scene.translate(0, 0.5, 0.9);
+    this.scene.rotate(this.angulo_roda_direita, 0 ,0 ,1);
     this.topo.display();
     this.scene.popMatrix();
     
-    //Tampo direito dentro
+    //Tampo esquerda dentro
 
-     this.scene.pushMatrix();
+    this.scene.pushMatrix();
     this.wheelAppearance.apply();
     this.scene.rotate(- Math.PI / 2, 0, 1 ,0);
     this.scene.translate(0, 0.5, -0.5);
+    this.scene.rotate(-this.angulo_roda_direita, 0 ,0 ,1);
     this.topo.display();
     this.scene.popMatrix();
 }
 
-MyRobot.prototype.updateRotation = function(rotation) {
+MyRobot.prototype.updateRotation = function(rotation, mySpeed) {
+	this.speed = mySpeed / 30;
+	if(rotation < 0){
+		this.angulo_roda_esquerda -= this.speed;
+        this.angulo_roda_direita += this.speed;
+	}else{
+		this.angulo_roda_esquerda += this.speed;
+        this.angulo_roda_direita -= this.speed;
+	}
     this.temp_angulo = rotation;
 };
 
 MyRobot.prototype.updateTranslate = function(myCase, mySpeed) {
+	var braco_oscilar_direito = mySpeed / 20;
+	var braco_oscilar_esquerdo = mySpeed / 20;
+	if(this.angulo_oscilar_direito <= Math.PI / 4 && this.angulo_oscilar_direito >= -Math.PI / 4){
+		this.angulo_oscilar_direito += this.direcao * braco_oscilar_direito;
+		this.angulo_oscilar_esquerdo -= this.direcao * braco_oscilar_esquerdo;
+	}else{
+		this.direcao = this.direcao * -1;
+		this.angulo_oscilar_direito += this.direcao * braco_oscilar_direito;
+		this.angulo_oscilar_esquerdo -= this.direcao * braco_oscilar_esquerdo;
+	}
+
+
     switch(myCase)
     {
       case 0:
         this.x += mySpeed / 25 * Math.sin(this.angulo);
         this.z += mySpeed / 25 * Math.cos(this.angulo);
+        this.speed = mySpeed / 30 / 0.5;
+        this.angulo_roda_esquerda += this.speed;
+        this.angulo_roda_direita += this.speed;
         break;
       case 1:
         this.x -= mySpeed / 25 * Math.sin(this.angulo);
         this.z -= mySpeed / 25 * Math.cos(this.angulo);
+        this.speed = mySpeed / 30 / 0.5;
+        this.angulo_roda_esquerda -= this.speed;
+        this.angulo_roda_direita -= this.speed;
         break;
     }
 }

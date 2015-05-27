@@ -56,7 +56,7 @@ MyInterface.prototype.init = function(application) {
 	// this.speed=3;
 	// min and max values can be specified as parameters
 	
-	this.gui.add(this.scene, 'speed', -5, 5);
+	this.gui.add(this.scene, 'speed', 0, 10);
 
 	this.gui.add(this.scene, 'currRobotAppearance', this.scene.robotAppearanceList);
 
@@ -77,17 +77,25 @@ MyInterface.prototype.processKeyboard = function(event) {
 	// for better cross-browser support, you may also check suggestions on using event.which in http://www.w3schools.com/jsref/event_key_keycode.asp
 	switch (event.keyCode)
 	{
+		case (97): //lower case a
 		case (65):	// only works for capital 'A', as it is
 			this.scene.robot.updateRotation(Math.PI / 18, this.scene.speed);
 			break;
+		case (100): //lower case d
 		case (68):  // this 
 			this.scene.robot.updateRotation(- Math.PI / 18, this.scene.speed);
 			break;
+		case (119): //lower case w
 		case (87) : //W
-			this.scene.robot.updateTranslate(0, this.scene.speed);
+			this.scene.robot.updateTranslate(0, this.scene.speed, this.scene.speed);
 			break;
+		case (115):
 		case (83) : //S
-			this.scene.robot.updateTranslate(1, this.scene.speed);
+			this.scene.robot.updateTranslate(1, this.scene.speed, this.scene.speed);
+			break;
+		case (111):
+		case (79) : //O
+			this.scene.hello = 1;
 			break;
 	};
 };

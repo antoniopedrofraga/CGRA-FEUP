@@ -47,6 +47,7 @@ LightingScene.prototype.init = function(application) {
 	this.robotAppearances.push("/resources/images/metalAppearance3.png");
 	this.robotAppearances.push("/resources/images/robothead3.png");
 	this.robotAppearances.push("/resources/images/robotbody3.png");
+	this.hello = 0;
 
 	this.currRobotAppearance = 'Bender';
 	this.robotAppearanceList = [
@@ -66,6 +67,7 @@ LightingScene.prototype.init = function(application) {
 	this.lamp = new MyLamp(this, 25, 19);
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
+	this.roda = new MyRobotWheel(this,500,1,0.4);
 
 
 	// Materials
@@ -319,7 +321,13 @@ LightingScene.prototype.display = function() {
 	this.robot.setUp();
 	this.robot.display();
 	this.popMatrix();
+	
+	//Teste Roda
 
+	this.pushMatrix();
+    this.metalAppearance3.apply();
+    this.roda.display();
+    this.popMatrix();
 
 	//Definicoes
 	if(this.luz1 == false){
