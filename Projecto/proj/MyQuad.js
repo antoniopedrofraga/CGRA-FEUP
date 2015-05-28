@@ -37,7 +37,7 @@ MyQuad.prototype.initBuffers = function () {
              0,0,1,
              0,0,1,
              0,0,1,
-             0,0,1			
+             0,0,1		
         ];
 
 	this.texCoords = [

@@ -150,7 +150,7 @@ MyRobot.prototype.display = function() {
 			this.scene.hello = 2;
 		}
 	}else if(this.scene.hello == 2){
-		if(this.i < 3){
+		if(this.i < 5){
 			if((this.angulo_adeus < Math.PI / 5) && (-Math.PI / 4 < this.angulo_adeus)){
 				this.angulo_adeus += this.direcao_adeus * Math.PI / 100;
 			}else{

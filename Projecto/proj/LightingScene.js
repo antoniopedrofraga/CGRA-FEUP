@@ -68,6 +68,8 @@ LightingScene.prototype.init = function(application) {
 	this.floor = new MyQuad(this, 0, 10, 0, 12);
 	this.leftwall = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
 	this.arranged_wall = new MyWall(this);
+	this.paisagem = new MyQuad(this, 0, 1, 0, 1);
+
 
 
 	// Materials
@@ -115,6 +117,13 @@ LightingScene.prototype.init = function(application) {
 	this.boardAppearance.setShininess(120);
 	this.boardAppearance.loadTexture("/resources/images/board.png");
 
+	this.paisagemAppearance = new CGFappearance(this);
+	this.paisagemAppearance.setAmbient(0.3,0.3,0.3,1);
+	this.paisagemAppearance.setDiffuse(0.9,0.9,0.9,1);
+	this.paisagemAppearance.setSpecular(0.1,0.1,0.1,1);	
+	this.paisagemAppearance.setShininess(2);
+	this.paisagemAppearance.loadTexture("/resources/images/paisagem.png");
+
 	this.metalAppearance = new CGFappearance(this);
 	this.metalAppearance.setAmbient(0.3,0.3,0.3,1);
 	this.metalAppearance.setDiffuse(10,10,10,1);
@@ -145,7 +154,7 @@ LightingScene.prototype.initCameras = function() {
 };
 
 LightingScene.prototype.initLights = function() {
-	this.setGlobalAmbientLight(0,0,0,0);
+	this.setGlobalAmbientLight(0.3,0.3,0.3,1);
 	
 	this.shader.bind();
 	
@@ -260,16 +269,17 @@ LightingScene.prototype.display = function() {
 	this.popMatrix();
 
 	// Left Wall
-	this.pushMatrix();
+	/*this.pushMatrix();
 		this.translate(0, 4, 7.5);
 		this.rotate(90 * degToRad, 0, 1, 0);
 		this.scale(15, 8, 0.2);
 		this.windowAppearance.apply();
 		this.leftwall.display();
-	this.popMatrix();
+	this.popMatrix();*/
 
 	// Plane Wall
 	this.pushMatrix();
+		this.windowAppearance.apply();
 		this.translate(7.5, 4, 0);
 		this.scale(15, 8, 0.2);
 		this.wall.display();
@@ -324,7 +334,17 @@ LightingScene.prototype.display = function() {
 
 	// Wall
 	this.pushMatrix();
+	this.windowAppearance.apply();
 	this.arranged_wall.display();
+	this.popMatrix();
+
+	//Paisagem
+	this.pushMatrix();
+	this.paisagemAppearance.apply();
+	this.translate(-10,5,7.5);
+	this.rotate(Math.PI / 2, 0,1,0);
+	this.scale(50,30,1);
+	this.paisagem.display();
 	this.popMatrix();
 	
 
