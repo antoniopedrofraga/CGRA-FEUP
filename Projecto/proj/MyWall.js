@@ -39,7 +39,8 @@ MyWall.prototype.display = function() {
     this.scene.pushMatrix();
     this.scene.translate(0,6.8,7.4);
     this.scene.rotate(Math.PI / 2, 0,1,0);
-    this.scene.scale(6.6,2.4,0);
+    //this.scene.rotate(Math.PI / 2,0,0,1); // evitar sombras
+    this.scene.scale(/*3.3*/6.6,2.4,0.3);
     this.wallTop.display();
     this.scene.popMatrix();
     
