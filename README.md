@@ -8,3 +8,6 @@ Some images of the final result:
 
 
 ![Robot skins](https://raw.githubusercontent.com/pedrofraga05/CGRA-FEUP/master/Projecto/prints/CGFImage-tp6-T6g06-4.4.png)
+
+
+![Robot Waving](https://raw.githubusercontent.com/pedrofraga05/CGRA-FEUP/master/Projecto/prints/CGFImage-tp6-T6g06-5.3.png)
